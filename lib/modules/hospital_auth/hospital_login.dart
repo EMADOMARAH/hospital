@@ -50,6 +50,7 @@ class _HospitalLoginScreenState extends State<HospitalLoginScreen> {
                   ),
 
                   TextFormField(
+                    controller: emailController,
                     validator: (String value){
                       if (value.isEmpty) {
                         return "ادخل البريد الالكترونى";
@@ -63,6 +64,7 @@ class _HospitalLoginScreenState extends State<HospitalLoginScreen> {
                   ),
 
                   TextFormField(
+                    controller: passwordController,
                       validator: (String value){
                         if (value.isEmpty) {
                           return "ادخل الرقم السرى";
