@@ -144,7 +144,6 @@ class _UserRegisterScreenState extends State<UserRegisterScreen> {
                       }
                       return null;
                     },
-                    obscureText: true,
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.call),
                       hintText: "رقم الهاتف ",
@@ -161,7 +160,6 @@ class _UserRegisterScreenState extends State<UserRegisterScreen> {
                       }
                       return null;
                     },
-                    obscureText: true,
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.info),
                       hintText: "الرقم القومي ",

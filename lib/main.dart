@@ -25,6 +25,7 @@ void main() async {
   } else{
     screen = InitialScreen();
   }
+  print(screen.toString());
   runApp(MyApp(
     screen: screen,
   ));
@@ -45,7 +46,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HospitalLoginScreen(),
+      home: screen,
     );
   }
 }

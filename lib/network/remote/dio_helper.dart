@@ -40,6 +40,19 @@ class DioHelper{
 
   }
 
+  static Future<Response> Logout(
+      @required String url,
+      @required Map<String , dynamic> userType ,
+      @required String token
+      ) async {
+    return await dio.post(
+     url,
+    queryParameters: userType,
+    options: Options(headers: {"Authorization" : "Bearer " + token}),
+    );
+
+  }
+
   static Future<Response> login(
       @required String url,
       @required Map<String , dynamic> userType,
