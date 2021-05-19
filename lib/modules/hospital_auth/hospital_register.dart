@@ -66,6 +66,8 @@ class _HospitalRegisterScreenState extends State<HospitalRegisterScreen>
                     ) ,
                   ) ,
                   TextFormField(
+                    controller: hospitalNameController,
+                    keyboardType: TextInputType.text,
                     validator: (String value){
                       if (value.isEmpty) {
                         return "ادخل اسم المستشفى";
@@ -78,12 +80,13 @@ class _HospitalRegisterScreenState extends State<HospitalRegisterScreen>
                         border: OutlineInputBorder(
                           borderSide: BorderSide(width: 1) ,
                         )) ,
-                    controller: hospitalNameController,
+
                   ) ,
 
 
                   TextFormField(
                     controller: passwordController,
+                    keyboardType: TextInputType.visiblePassword,
                     validator: (String value){
                       if (value.isEmpty) {
                         return "ادخل ارقم السرى";
@@ -101,7 +104,9 @@ class _HospitalRegisterScreenState extends State<HospitalRegisterScreen>
                   ) ,
                   TextFormField(
                     controller: emailController,
-                    validator: (String value){
+                    keyboardType: TextInputType.emailAddress,
+                    validator: (String value)
+                    {
                       if (value.isEmpty) {
                         return "ادخل البريد الالكترونى";
                       }
@@ -117,6 +122,7 @@ class _HospitalRegisterScreenState extends State<HospitalRegisterScreen>
                   ) ,
                   TextFormField(
                     controller: phoneController,
+                    keyboardType: TextInputType.phone,
                     validator: (String value){
                       if (value.isEmpty) {
                         return "ادخل رقم الهاتف";
@@ -134,6 +140,7 @@ class _HospitalRegisterScreenState extends State<HospitalRegisterScreen>
                   ) ,
                   TextFormField(
                     controller: branchController,
+                    keyboardType: TextInputType.text,
                     validator: (String value){
                       if (value.isEmpty) {
                         return "ادخل اسم فرع المستشفى";
@@ -162,9 +169,9 @@ class _HospitalRegisterScreenState extends State<HospitalRegisterScreen>
                       color: Colors.blue ,
                       onPressed: ()
                       {
-                           getLoc();
+
                            if (formKey.currentState.validate()) {
-                             register();
+                             getLoc();
                            }
 
 
@@ -289,6 +296,8 @@ class _HospitalRegisterScreenState extends State<HospitalRegisterScreen>
         });
       });
     });
+
+    register();
   }
 
   Future<List<Address>> _getAddress(double lat, double lang) async {

@@ -1,4 +1,5 @@
 import 'package:carousel_pro/carousel_pro.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hospital/modules/user_home/user_home.dart';
@@ -63,8 +64,8 @@ class _UserRegisterScreenState extends State<UserRegisterScreen> {
                     ),
                   ),
                   TextFormField(
-                    controller: emailController,
-                    keyboardType: TextInputType.emailAddress ,
+                    controller: userNameController,
+                    keyboardType: TextInputType.text ,
                     decoration: InputDecoration(
                         prefixIcon: Icon(Icons.person),
                         hintText: ("أدخل أسم المستخدم"),
@@ -73,7 +74,7 @@ class _UserRegisterScreenState extends State<UserRegisterScreen> {
                         )),
                     validator: (String value){
                       if (value.isEmpty) {
-                        return "ادخل البريد الالكترونى";
+                        return "ادخل اسم المستخدم";
                       }
                       return null;
                     },
@@ -81,6 +82,7 @@ class _UserRegisterScreenState extends State<UserRegisterScreen> {
 
                   TextFormField(
                     controller: passwordController,
+                    keyboardType: TextInputType.visiblePassword,
                     validator: (String value){
                       if (value.isEmpty) {
                         return "ادخل الرقم السرى";
@@ -101,6 +103,9 @@ class _UserRegisterScreenState extends State<UserRegisterScreen> {
                     validator: (String value){
                       if (value.isEmpty) {
                         return "ادخل الرقم السرى";
+                      }else if(value != passwordController.text){
+                        return "الرقم السرى خطأ";
+
                       }
                       return null;
                     },
@@ -114,6 +119,7 @@ class _UserRegisterScreenState extends State<UserRegisterScreen> {
                     ),
                   ),
                   TextFormField(
+                    keyboardType: TextInputType.emailAddress,
                     validator: (String value){
                       if (value.isEmpty) {
                         return "ادخل البريج الالكترونى";
@@ -121,7 +127,6 @@ class _UserRegisterScreenState extends State<UserRegisterScreen> {
                       return null;
                     },
                     controller: emailController,
-                    obscureText: true,
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.person),
                       hintText: " البريد الاكتروني ",
@@ -132,6 +137,7 @@ class _UserRegisterScreenState extends State<UserRegisterScreen> {
                   ),
                   TextFormField(
                     controller: phoneController,
+                    keyboardType: TextInputType.phone,
                     validator: (String value){
                       if (value.isEmpty) {
                         return "ادخل رقم الهاتف";
@@ -176,14 +182,11 @@ class _UserRegisterScreenState extends State<UserRegisterScreen> {
                     child: RaisedButton(
                       color: Colors.blue,
                       onPressed: () {
-                        getLoc();
 
                         if (formKey.currentState.validate()) {
-                          register();
+                          getLoc();
                         }
-
-
-                      },
+                        },
                       child: Text(
                         " انشاء الحساب  ",
                         style: TextStyle(fontSize: 20),
@@ -304,6 +307,8 @@ class _UserRegisterScreenState extends State<UserRegisterScreen> {
         });
       });
     });
+
+    register();
   }
 
   Future<List<Address>> _getAddress(double lat, double lang) async {

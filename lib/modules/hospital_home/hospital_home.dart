@@ -14,7 +14,7 @@ class _HospitalHomeScreenState extends State<HospitalHomeScreen> {
       appBar: AppBar(),
       body: Center(
         child: Text(
-            'USER'
+            'Hospital'
         ),
       ),
     );
