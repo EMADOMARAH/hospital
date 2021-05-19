@@ -1,0 +1,22 @@
+import 'package:flutter/material.dart';
+
+class UserHomeScreen extends StatefulWidget {
+  const UserHomeScreen({Key key}) : super(key: key);
+
+  @override
+  _UserHomeScreenState createState() => _UserHomeScreenState();
+}
+
+class _UserHomeScreenState extends State<UserHomeScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(),
+      body: Center(
+        child: Text(
+          'USER'
+        ),
+      ),
+    );
+  }
+}
