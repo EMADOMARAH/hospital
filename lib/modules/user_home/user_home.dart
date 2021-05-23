@@ -17,9 +17,69 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Center(
-        child: Text(
-          'USER'
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+
+            MaterialButton(
+              onPressed: (){},
+              color: Colors.blue,
+              height: 100,
+              minWidth: double.infinity,
+              child: Text(
+                'Burn department' ,
+                style: TextStyle(
+                    fontSize: 25,
+                    color: Colors.white
+                ),
+              ),
+              shape: new RoundedRectangleBorder(
+                borderRadius: new BorderRadius.circular(15.0),
+              ),
+            ),
+            SizedBox(
+              height: 50,
+            ),
+            MaterialButton(
+              onPressed: (){},
+              color: Colors.blue,
+              height: 100,
+              minWidth: double.infinity,
+              child: Text(
+                'Children nurseries ' ,
+                style: TextStyle(
+                    fontSize: 25,
+                    color: Colors.white
+                ),
+              ),
+              shape: new RoundedRectangleBorder(
+                borderRadius: new BorderRadius.circular(15.0),
+              ),
+            ),
+            SizedBox(
+              height: 50,
+            ),
+            MaterialButton(
+              onPressed: (){},
+              color: Colors.blue,
+              height: 100,
+              minWidth: double.infinity,
+              child: Text(
+                'Intensive care ' ,
+                style: TextStyle(
+                    fontSize: 25,
+                    color: Colors.white
+                ),
+              ),
+              shape: new RoundedRectangleBorder(
+                borderRadius: new BorderRadius.circular(15.0),
+              ),
+            ),
+          ],
         ),
       ),
       floatingActionButton: MaterialButton(

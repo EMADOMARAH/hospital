@@ -5,6 +5,7 @@ import 'package:flutter_conditional_rendering/conditional.dart';
 import 'package:hospital/modules/hospital_auth/hospital_login.dart';
 import 'package:hospital/modules/hospital_auth/hospital_register.dart';
 import 'package:hospital/modules/hospital_home/hospital_home.dart';
+import 'package:hospital/modules/hospital_list/hospital_list_screen.dart';
 import 'package:hospital/modules/initial_screen/initial_screen.dart';
 import 'package:hospital/modules/user_auth/user_register.dart';
 import 'package:hospital/modules/user_home/user_home.dart';
@@ -46,7 +47,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: screen,
+      home: HospitalListScreen(),
     );
   }
 }
