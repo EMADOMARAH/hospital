@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:hospital/modules/hospital_list/hospital_list_screen.dart';
 import 'package:hospital/modules/initial_screen/initial_screen.dart';
 import 'package:hospital/network/local/cache_helper.dart';
 import 'package:hospital/network/remote/dio_helper.dart';
@@ -26,7 +27,9 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
           children: [
 
             MaterialButton(
-              onPressed: (){},
+              onPressed: (){
+                navigateTo(context, HospitalListScreen(category: "1",));
+              },
               color: Colors.blue,
               height: 100,
               minWidth: double.infinity,
@@ -45,7 +48,9 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
               height: 50,
             ),
             MaterialButton(
-              onPressed: (){},
+              onPressed: (){
+                navigateTo(context, HospitalListScreen(category: "2",));
+              },
               color: Colors.blue,
               height: 100,
               minWidth: double.infinity,
@@ -64,7 +69,9 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
               height: 50,
             ),
             MaterialButton(
-              onPressed: (){},
+              onPressed: (){
+                navigateTo(context, HospitalListScreen(category: "3",));
+              },
               color: Colors.blue,
               height: 100,
               minWidth: double.infinity,
