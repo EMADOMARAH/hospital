@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:hospital/modules/history/history_screen.dart';
 import 'package:hospital/modules/hospital_list/hospital_list_screen.dart';
 import 'package:hospital/modules/initial_screen/initial_screen.dart';
+import 'package:hospital/modules/profile/profile_screen.dart';
+import 'package:hospital/modules/upcoming/upcoming_screen.dart';
 import 'package:hospital/network/local/cache_helper.dart';
 import 'package:hospital/network/remote/dio_helper.dart';
 import 'package:hospital/shared/components/components.dart';
@@ -17,7 +20,23 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 20),
+            child: GestureDetector(
+              onTap: (){
+                navigateTo(context, ProfileScreen());
+              },
+              child: Icon(
+                  Icons.account_circle_rounded,
+                size: 30,
+
+              ),
+            ),
+          ),
+        ],
+      ),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
@@ -71,6 +90,7 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
             MaterialButton(
               onPressed: (){
                 navigateTo(context, HospitalListScreen(category: "3",));
+              //navigateTo(context, HistoryScreen());
               },
               color: Colors.blue,
               height: 100,

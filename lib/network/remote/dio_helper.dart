@@ -70,6 +70,41 @@ class DioHelper{
 
   }
 
+  static Future<Response>getUpcoming({
+    @required String url,
+    @required Map<String , dynamic>userType,
+    @required String token
+  }) async {
+    return await dio.get(
+      url ,
+      queryParameters: userType ,
+      options: Options(headers: {"Authorization" : "Bearer " + token}),
+    );
+  }
+
+  static Future<Response>getHistory({
+    @required String url,
+    @required Map<String , dynamic>userType,
+    @required String token
+  }) async {
+    return await dio.get(
+      url ,
+      queryParameters: userType ,
+      options: Options(headers: {"Authorization" : "Bearer " + token}),
+    );
+  }
+
+  static Future<Response>getProfile({
+    @required String url,
+    @required Map<String , dynamic>userType,
+    @required String token
+  }) async {
+    return await dio.get(
+      url ,
+      queryParameters: userType ,
+      options: Options(headers: {"Authorization" : "Bearer " + token}),
+    );
+  }
 
   static Future<Response>getHospitals({
     @required String url,

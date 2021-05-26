@@ -93,6 +93,31 @@ class _HospitalListScreenState extends State<HospitalListScreen> {
               'Search'
             ),
               ),
+          MaterialButton(
+            onPressed: (){
+              DioHelper.getHospitals(
+                  url: "/api/v1/user/categories/${category}/hospitals",
+                  userType: {
+                    "type" : "user" ,
+                    "search" : searchControoler.text ,
+                    "distance" : true
+                  },
+                  token: token
+              ).then((value){
+                print(value.data);
+                myHospitlas = value.data["data"];
+                setState(() {
+
+                });
+              })
+                  .catchError((onError){
+                print(onError.toString());
+              });
+            },
+            child: Text(
+                'By distance'
+            ),
+          ),
         ],
 
       ),

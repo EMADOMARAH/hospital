@@ -155,6 +155,90 @@ Widget BedItem({
   ),
 );
 
+Widget UpcomingItem({
+  @required Map<dynamic,dynamic> upcoming,
+  @required BuildContext context
+}
+    ){
+ // String newDate = DateFormat('yyyy-MM-dd').format();
+  String newDate = upcoming['start_at'];
+  return Padding(
+  padding: const EdgeInsets.symmetric(horizontal: 20 , vertical: 10),
+  child: Container(
+    padding: EdgeInsets.all(10.0),
+    decoration: BoxDecoration(
+      boxShadow: [
+        BoxShadow(
+          color: Colors.grey.withOpacity(0.5),
+          spreadRadius: 3,
+          //blurRadius: 7,
+          offset: Offset(0, 3), // changes position of shadow
+        ),
+      ],
+      borderRadius: BorderRadius.circular(10.0),
+    ),
+    child: Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Row(
+          children: [
+            Text(
+              '${upcoming['bed']['id']}',
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+            Text(
+              " : سرير رقم" ,
+            ),
+            Spacer(
+            ),
+            Text(
+              upcoming['bed']['hospital']['name'] ,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+            Text(
+              " : مستشفى " ,
+            ),
+
+          ],
+        ),
+        Row(
+          children: [
+            Text(
+              newDate.substring(0,10),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+            Text(
+              " : تاريخ" ,
+            ),
+            Spacer(
+            ),
+            Text(
+              "${upcoming['bed']['day_cost']}" ,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+            Text(
+              " : تكلفه يوميه " ,
+            ),
+
+          ],
+        ),
+        Text(
+          upcoming['bed']['hospital']['address'],
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+          //textDirection: TextDirection.rtl,
+        ),
+      ],
+    ),
+  ),
+);
+}
+
+
 Widget HospitalItem({
   @required Map<dynamic,dynamic> hospitals,
   @required String category,
