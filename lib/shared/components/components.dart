@@ -1,8 +1,11 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_conditional_rendering/conditional.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:hospital/modules/show_beds/show_beds.dart';
+import 'package:hospital/modules/Hospital/bed_history/bed_history.dart';
+import 'package:hospital/modules/Hospital/hospital_beds/hospital_beds.dart';
+import 'package:hospital/modules/User/show_beds/show_beds.dart';
 import 'package:hospital/network/local/cache_helper.dart';
 import 'package:hospital/network/remote/dio_helper.dart';
 import 'package:intl/intl.dart';
@@ -107,7 +110,7 @@ Widget BedItem({
                                     textColor: Colors.white,
                                     fontSize: 16.0
                                 );
-                                
+
                               } else{
                                 Fluttertoast.showToast(
                                     msg: value.data['message'],
@@ -316,6 +319,388 @@ Widget HospitalItem({
     ),
   ),
 );
+
+
+Widget HospotalShowBedsItem({
+  @required Map<dynamic,dynamic> hospitalBeds,
+  @required BuildContext context,
+  @required String token,
+  @required String category,
+  @required String categoryName,
+}){
+  String newStatus = "Active";
+  var costController = TextEditingController();
+  var statusController = TextEditingController();
+  var formKey = GlobalKey<FormState>();
+
+  return Padding(
+  padding: const EdgeInsets.symmetric(horizontal: 20.0 , vertical: 10),
+  child: GestureDetector(
+    onTap: () {
+      navigateTo(context, BedHistory(bedId: '${hospitalBeds['id']}',));
+    },
+    child: Container(
+      padding: EdgeInsets.all(10.0),
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 3,
+            //blurRadius: 7,
+            offset: Offset(0, 3), // changes position of shadow
+          ),
+        ],
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Row(
+            children: [
+              Text(
+                'Bed Id : ${hospitalBeds['id']}',
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+              Spacer(),
+              Text(
+                'Status : ${hospitalBeds['status']}',
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+              Spacer(),
+              Text(
+                'Day Cost : ${hospitalBeds['day_cost']}',
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Row(
+            children: [
+              Expanded(
+                child: MaterialButton(
+                  onPressed: (){
+                    showDialog(
+                      context: context ,
+                      builder: (BuildContext context){
+                        return AlertDialog(
+                          scrollable: true,
+                          title: Text('Edit'),
+                          content: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Form(
+                              key: formKey,
+                              child: Column(
+                                children: [
+                                  TextFormField(
+                                    decoration: InputDecoration(
+                                      labelText: 'Day Cost (LE)',
+                                      icon: Icon(Icons.monetization_on),
+                                    ),
+                                    controller: costController,
+                                    keyboardType: TextInputType.number,
+                                    validator:(String value){
+                                      if (value.isEmpty) {
+                                        return "Enter Day Cost";
+                                      }
+                                      return null;
+                                    },
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(' Status : \n (1) for Active \n (2) for Reserved \n (3) for Out of Service'),
+                                  TextFormField(
+                                    decoration: InputDecoration(
+                                      labelText: 'Status',
+                                      icon: Icon(Icons.single_bed),
+                                    ),
+                                    controller: statusController,
+                                    keyboardType: TextInputType.number,
+                                    validator:(var value){
+                                      if (value.isEmpty) {
+                                        return "Enter Status";
+                                      }else if(int.parse(value) < 1 || int.parse(value) >3 ){
+                                        return "Enter Right Value";
+                                      }
+                                      return null;
+                                    },
+                                  ),
+
+                                ],
+                              ),
+                            ),
+
+                          ),
+                          actions: [
+                            MaterialButton(
+                              onPressed: (){
+                                if(formKey.currentState.validate()){
+                                  var token = CacheHelper.getData(key: 'token');
+                                  String myStatuse;
+                                  switch(statusController.text){
+                                    case '1':
+                                      myStatuse = 'Active';
+                                      break;
+                                    case '2':
+                                      myStatuse = 'Reserved';
+                                      break;
+                                    case '3':
+                                      myStatuse = 'Out of service';
+                                      break;
+
+                                  }
+                                  var body = {
+                                    "day_cost" : double.parse(costController.text) ,
+                                    "status" : myStatuse
+                                  };
+                                  DioHelper.editBed(
+                                      url:'api/v1/hospital/beds/${hospitalBeds['id']}/edit',
+                                      userType: {"type": "hospital"},
+                                      body: body,
+                                      token: token
+                                  ).then((value){
+                                    if (value.data['status']) {
+                                      Fluttertoast.showToast(
+                                          msg: value.data['message'],
+                                          toastLength: Toast.LENGTH_SHORT,
+                                          gravity: ToastGravity.BOTTOM,
+                                          timeInSecForIosWeb: 1,
+                                          backgroundColor: Colors.green,
+                                          textColor: Colors.white,
+                                          fontSize: 16.0
+                                      );
+                                      navigateReplacement(context, HospitalBeds(category: category,categoryName: categoryName,));
+
+
+
+                                    } else{
+                                      Fluttertoast.showToast(
+                                          msg: value.data['message'],
+                                          toastLength: Toast.LENGTH_SHORT,
+                                          gravity: ToastGravity.BOTTOM,
+                                          timeInSecForIosWeb: 1,
+                                          backgroundColor: Colors.red,
+                                          textColor: Colors.white,
+                                          fontSize: 16.0
+                                      );
+                                    }
+                                  }).catchError((onError){
+                                    Fluttertoast.showToast(
+                                        msg: onError.toString(),
+                                        toastLength: Toast.LENGTH_SHORT,
+                                        gravity: ToastGravity.BOTTOM,
+                                        timeInSecForIosWeb: 1,
+                                        backgroundColor: Colors.red,
+                                        textColor: Colors.white,
+                                        fontSize: 16.0
+                                    );
+                                  });
+
+                                }
+                              },
+                            child: Text('Submit'),
+                            )
+                          ],
+                        );
+                      }
+                    );
+                  } ,
+                  child: Text(
+                    'Edit' ,
+                    style: TextStyle(
+                        color: Colors.white
+                    ),
+                  ),
+                  color: Colors.blue,
+                ),
+              ),
+              SizedBox(
+                width: 50,
+              ),
+              Expanded(
+                child: MaterialButton(
+                  onPressed: (){
+                    print('Delete');
+                    DioHelper.deleteBed(
+                        url: "api/v1/hospital/beds/${hospitalBeds['id']}/delete",
+                        userType: {"type": "hospital"},
+                        token: token
+                    ).then((value){
+                      if (value.data['status']) {
+                        Fluttertoast.showToast(
+                            msg: value.data['message'],
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.BOTTOM,
+                            timeInSecForIosWeb: 1,
+                            backgroundColor: Colors.green,
+                            textColor: Colors.white,
+                            fontSize: 16.0
+                        );
+                        navigateReplacement(context, HospitalBeds(category: category,categoryName: categoryName,));
+
+
+
+                      } else{
+                        Fluttertoast.showToast(
+                            msg: value.data['message'],
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.BOTTOM,
+                            timeInSecForIosWeb: 1,
+                            backgroundColor: Colors.red,
+                            textColor: Colors.white,
+                            fontSize: 16.0
+                        );
+                      }
+                    }).catchError((onError){
+                      Fluttertoast.showToast(
+                          msg: onError.toString(),
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.BOTTOM,
+                          timeInSecForIosWeb: 1,
+                          backgroundColor: Colors.red,
+                          textColor: Colors.white,
+                          fontSize: 16.0
+                      );
+                    });
+                  } ,
+                  child: Text(
+                    'Delete',
+                    style: TextStyle(
+                        color: Colors.white
+                    ),
+                  ),
+                  color: Colors.deepOrange,
+                ),
+              ),
+            ],
+          )
+
+        ],
+      ),
+    ),
+  ),
+);
+}
+
+Widget BedHistoryItem({
+  @required Map<dynamic,dynamic> hospitalBeds,
+  @required BuildContext context,
+  @required String bedId,
+  @required String token,
+}){
+  String startDate = hospitalBeds['start_at'];
+  String endDate = hospitalBeds['end_at'];
+  return Padding(
+  padding: const EdgeInsets.symmetric(horizontal: 20.0 , vertical: 10),
+  child: Container(
+    padding: EdgeInsets.all(10.0),
+    decoration: BoxDecoration(
+      boxShadow: [
+        BoxShadow(
+          color: Colors.grey.withOpacity(0.5),
+          spreadRadius: 3,
+          //blurRadius: 7,
+          offset: Offset(0, 3), // changes position of shadow
+        ),
+      ],
+      borderRadius: BorderRadius.circular(10.0),
+    ),
+    child: Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+
+        Row(
+          children: [
+            Text(
+              'Name : ${hospitalBeds['user']['name']}',
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+            Spacer(),
+            Text(
+              'Phone : ${hospitalBeds['user']['phone']}',
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ],
+        ),
+        SizedBox(
+          height: 10,
+        ),
+        Row(
+          children: [
+            Text(
+              'Started At : ${startDate.substring(0,10)}',
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+            Spacer(),
+            Container(
+              child: endDate == null ? MaterialButton(
+                  onPressed: (){
+                    var token = CacheHelper.getData(key: 'token');
+                    DioHelper.endBedReservation(
+                        url: 'api/v1/hospital/beds/${bedId}/reservations/${hospitalBeds['id']}/end',
+                        userType: {"type": "hospital"},
+                        token: token).then((value){
+                      if (value.data['status']) {
+                        Fluttertoast.showToast(
+                            msg: value.data['message'],
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.BOTTOM,
+                            timeInSecForIosWeb: 1,
+                            backgroundColor: Colors.green,
+                            textColor: Colors.white,
+                            fontSize: 16.0
+                        );
+                        navigateReplacement(context, BedHistory(bedId: bedId,));
+                      } else{
+                        Fluttertoast.showToast(
+                            msg: value.data['message'],
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.BOTTOM,
+                            timeInSecForIosWeb: 1,
+                            backgroundColor: Colors.red,
+                            textColor: Colors.white,
+                            fontSize: 16.0
+                        );
+                      }
+                    }).catchError((onError){
+                      Fluttertoast.showToast(
+                          msg: onError.toString(),
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.BOTTOM,
+                          timeInSecForIosWeb: 1,
+                          backgroundColor: Colors.red,
+                          textColor: Colors.white,
+                          fontSize: 16.0
+                      );
+                    });
+                  },
+                  child: Text(
+                    'End Reservation'
+                  ),
+                color: Colors.lightGreenAccent,
+              ) : Text(
+                'Ended : ${endDate.substring(0,10)}',
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+          ],
+        ),
+
+
+      ],
+    ),
+  ),
+);
+}
 
 Widget DefaultFormField({
   @required TextEditingController controller,

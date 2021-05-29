@@ -1,8 +1,8 @@
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:hospital/modules/hospital_auth/hospital_login.dart';
-import 'package:hospital/modules/user_auth/user_login.dart';
+import 'package:hospital/modules/Hospital/hospital_auth/hospital_login.dart';
+import 'package:hospital/modules/User/user_auth/user_login.dart';
 import 'package:hospital/shared/components/components.dart';
 
 class InitialScreen extends StatefulWidget {

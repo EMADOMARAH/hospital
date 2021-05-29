@@ -82,6 +82,7 @@ class DioHelper{
     );
   }
 
+
   static Future<Response>getHistory({
     @required String url,
     @required Map<String , dynamic>userType,
@@ -117,6 +118,8 @@ class DioHelper{
       options: Options(headers: {"Authorization" : "Bearer " + token}),
     );
   }
+
+
   static Future<Response>getBeds({
     @required String url,
     @required Map<String , dynamic>userType,
@@ -140,6 +143,91 @@ class DioHelper{
       data: body,
     );
   }
+
+  //-------------------------------Hospital----------------------------------
+  static Future<Response>getHospitalBeds({
+    @required String url,
+    @required Map<String , dynamic>userType,
+    @required String token
+  }) async {
+    return await dio.get(
+      url ,
+      queryParameters: userType ,
+      options: Options(headers: {"Authorization" : "Bearer " + token}),
+    );
+  }
+
+  static Future<Response> deleteBed(
+      {
+        @required String url,
+        @required Map<String, dynamic> userType,
+        @required String token
+      }) async {
+    return await dio.post(
+      url ,
+      queryParameters:userType,
+      options: Options(headers: {"Authorization" : "Bearer " + token}),
+    );
+  }
+
+  static Future<Response> editBed({
+    @required String url,
+    @required Map<String , dynamic> userType ,
+    Map<String, dynamic> body,
+    @required String token
+  }) async {
+    return await dio.post(
+      url ,
+      data: body,
+      queryParameters: userType,
+      options: Options(headers: {"Authorization" : "Bearer " + token}),
+
+    );
+
+  }
+
+  static Future<Response> addBed({
+    @required String url,
+    @required Map<String , dynamic> userType ,
+    Map<String, dynamic> body,
+    @required String token
+  }) async {
+    return await dio.post(
+      url ,
+      data: body,
+      queryParameters: userType,
+      options: Options(headers: {"Authorization" : "Bearer " + token}),
+
+    );
+
+  }
+
+  static Future<Response>getBedHistory({
+    @required String url,
+    @required Map<String , dynamic>userType,
+    @required String token
+  }) async {
+    return await dio.get(
+      url ,
+      queryParameters: userType ,
+      options: Options(headers: {"Authorization" : "Bearer " + token}),
+    );
+  }
+
+  static Future<Response> endBedReservation({
+    @required String url,
+    @required Map<String , dynamic> userType ,
+    @required String token
+  }) async {
+    return await dio.post(
+      url ,
+      queryParameters: userType,
+      options: Options(headers: {"Authorization" : "Bearer " + token}),
+
+    );
+
+  }
+
 
 
 }

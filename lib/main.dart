@@ -2,13 +2,13 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_conditional_rendering/conditional.dart';
-import 'package:hospital/modules/hospital_auth/hospital_login.dart';
-import 'package:hospital/modules/hospital_auth/hospital_register.dart';
-import 'package:hospital/modules/hospital_home/hospital_home.dart';
-import 'package:hospital/modules/hospital_list/hospital_list_screen.dart';
+import 'package:hospital/modules/Hospital/hospital_auth/hospital_login.dart';
+import 'package:hospital/modules/Hospital/hospital_auth/hospital_register.dart';
+import 'package:hospital/modules/Hospital/hospital_home/hospital_home.dart';
+import 'package:hospital/modules/User/hospital_list/hospital_list_screen.dart';
 import 'package:hospital/modules/initial_screen/initial_screen.dart';
-import 'package:hospital/modules/user_auth/user_register.dart';
-import 'package:hospital/modules/user_home/user_home.dart';
+import 'package:hospital/modules/User/user_auth/user_register.dart';
+import 'package:hospital/modules/User/user_home/user_home.dart';
 import 'package:hospital/network/local/cache_helper.dart';
 import 'package:hospital/network/remote/dio_helper.dart';
 

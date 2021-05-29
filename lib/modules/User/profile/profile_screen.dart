@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hospital/modules/history/history_screen.dart';
-import 'package:hospital/modules/upcoming/upcoming_screen.dart';
+import 'package:hospital/modules/User/history/history_screen.dart';
+import 'package:hospital/modules/User/upcoming/upcoming_screen.dart';
 import 'package:hospital/network/local/cache_helper.dart';
 import 'package:hospital/network/remote/dio_helper.dart';
 import 'package:hospital/shared/components/components.dart';

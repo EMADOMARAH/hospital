@@ -1,40 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:hospital/modules/history/history_screen.dart';
-import 'package:hospital/modules/hospital_list/hospital_list_screen.dart';
+import 'package:hospital/modules/Hospital/hospital_beds/hospital_beds.dart';
 import 'package:hospital/modules/initial_screen/initial_screen.dart';
-import 'package:hospital/modules/profile/profile_screen.dart';
-import 'package:hospital/modules/upcoming/upcoming_screen.dart';
 import 'package:hospital/network/local/cache_helper.dart';
 import 'package:hospital/network/remote/dio_helper.dart';
 import 'package:hospital/shared/components/components.dart';
 
-class UserHomeScreen extends StatefulWidget {
-  const UserHomeScreen({Key key}) : super(key: key);
+class HospitalHomeScreen extends StatefulWidget {
+  const HospitalHomeScreen({Key key}) : super(key: key);
 
   @override
-  _UserHomeScreenState createState() => _UserHomeScreenState();
+  _HospitalHomeScreenState createState() => _HospitalHomeScreenState();
 }
 
-class _UserHomeScreenState extends State<UserHomeScreen> {
+class _HospitalHomeScreenState extends State<HospitalHomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 20),
-            child: GestureDetector(
-              onTap: (){
-                navigateTo(context, ProfileScreen());
-              },
-              child: Icon(
-                  Icons.account_circle_rounded,
-                size: 30,
-
-              ),
-            ),
-          ),
+          // Padding(
+          //   padding: const EdgeInsets.only(right: 20),
+          //   child: GestureDetector(
+          //     onTap: (){
+          //       navigateTo(context, ProfileScreen());
+          //     },
+          //     child: Icon(
+          //       Icons.account_circle_rounded,
+          //       size: 30,
+          //
+          //     ),
+          //   ),
+          // ),
         ],
       ),
       body: Padding(
@@ -47,7 +44,7 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
 
             MaterialButton(
               onPressed: (){
-                navigateTo(context, HospitalListScreen(category: "1",));
+                navigateTo(context, HospitalBeds(category: "1" , categoryName: "Burn department",));
               },
               color: Colors.blue,
               height: 100,
@@ -68,7 +65,7 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
             ),
             MaterialButton(
               onPressed: (){
-                navigateTo(context, HospitalListScreen(category: "2",));
+                navigateTo(context, HospitalBeds(category: "2" ,categoryName: "Children nurseries",));
               },
               color: Colors.blue,
               height: 100,
@@ -89,8 +86,7 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
             ),
             MaterialButton(
               onPressed: (){
-                navigateTo(context, HospitalListScreen(category: "3",));
-              //navigateTo(context, HistoryScreen());
+                navigateTo(context, HospitalBeds(category: "3" , categoryName: "Intensive care "));
               },
               color: Colors.blue,
               height: 100,
@@ -112,8 +108,8 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
       floatingActionButton: MaterialButton(
         onPressed: (){
           DioHelper.Logout(
-              "api/v1/auth/user/logout",
-              {"type" : "user"},
+              "api/v1/auth/hospital/logout",
+              {"type" : "hospital"},
               CacheHelper.getData(key: "token")
           ).then((value){
             print(value.data.toString());

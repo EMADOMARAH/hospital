@@ -1,8 +1,8 @@
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:hospital/modules/user_auth/user_register.dart';
-import 'package:hospital/modules/user_home/user_home.dart';
+import 'package:hospital/modules/User/user_auth/user_register.dart';
+import 'package:hospital/modules/User/user_home/user_home.dart';
 import 'package:hospital/network/local/cache_helper.dart';
 import 'package:hospital/network/remote/dio_helper.dart';
 import 'package:hospital/shared/components/components.dart';
