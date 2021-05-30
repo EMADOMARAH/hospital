@@ -69,7 +69,12 @@ class _ShowBedsState extends State<ShowBeds> {
               itemCount: myBeds.length
           ),
           fallback:(context) => Center(
-            child:  CircularProgressIndicator(),
+            child:  Text(
+              'No Data Found' ,
+              style: TextStyle(
+                  fontSize: 20
+              ),
+            ),
           ),
         ),
 

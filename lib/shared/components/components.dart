@@ -27,13 +27,18 @@ Widget HospitalList({
         itemCount: hospitals.length
     ),
     fallbackBuilder: (context)=>Center(
-      child: CircularProgressIndicator(),
-    )
+      child:  Text(
+        'No Data Found' ,
+        style: TextStyle(
+            fontSize: 20
+        ),
+      ),
+    ),
 );
 
 Widget BedItem({
-  @required int bedId,
-  @required double cost,
+  @required int  bedId,
+  @required dynamic cost,
   @required String status,
   @required BuildContext context,
 }
@@ -95,48 +100,74 @@ Widget BedItem({
                         String st = DateFormat('yyyy-MM-dd').format(date);
                         var token = CacheHelper.getData(key: 'token');
                         var body = {"start_at" : st};
-                        DioHelper.bookBed(
-                            url: '/api/v1/user/beds/${bedId}',
-                            userType: { "type" : "user"},
-                            body: body,
-                            token: token).then((value) {
-                              if (value.data['status'] == true) {
-                                Fluttertoast.showToast(
-                                    msg: "تم الحجز بنجاح",
-                                    toastLength: Toast.LENGTH_SHORT,
-                                    gravity: ToastGravity.BOTTOM,
-                                    timeInSecForIosWeb: 1,
-                                    backgroundColor: Colors.green,
-                                    textColor: Colors.white,
-                                    fontSize: 16.0
-                                );
+                        showDialog(
+                            context: context ,
+                            builder: (BuildContext context){
+                              return AlertDialog(
+                                scrollable: true,
+                                title: Text('Edit'),
+                                content: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    'You Sure You Want To Book This Bed '
+                                  ),
 
-                              } else{
-                                Fluttertoast.showToast(
-                                    msg: value.data['message'],
-                                    toastLength: Toast.LENGTH_SHORT,
-                                    gravity: ToastGravity.BOTTOM,
-                                    timeInSecForIosWeb: 1,
-                                    backgroundColor: Colors.red,
-                                    textColor: Colors.white,
-                                    fontSize: 16.0
-                                );
-                              }
-                        }).catchError((onError){
-                          print(onError.toString());
-                          Fluttertoast.showToast(
-                              msg: onError.toString(),
-                              toastLength: Toast.LENGTH_SHORT,
-                              gravity: ToastGravity.BOTTOM,
-                              timeInSecForIosWeb: 1,
-                              backgroundColor: Colors.red,
-                              textColor: Colors.white,
-                              fontSize: 16.0
-                          );
-                        });
+                                ),
+                                actions: [
+                                  MaterialButton(
+                                    onPressed: (){
+                                      DioHelper.bookBed(
+                                          url: '/api/v1/user/beds/${bedId}',
+                                          userType: { "type" : "user"},
+                                          body: body,
+                                          token: token).then((value) {
+                                        if (value.data['status'] == true) {
+                                          Fluttertoast.showToast(
+                                              msg: "تم الحجز بنجاح",
+                                              toastLength: Toast.LENGTH_SHORT,
+                                              gravity: ToastGravity.BOTTOM,
+                                              timeInSecForIosWeb: 1,
+                                              backgroundColor: Colors.green,
+                                              textColor: Colors.white,
+                                              fontSize: 16.0
+                                          );
+
+                                        } else{
+                                          Fluttertoast.showToast(
+                                              msg: value.data['message'],
+                                              toastLength: Toast.LENGTH_SHORT,
+                                              gravity: ToastGravity.BOTTOM,
+                                              timeInSecForIosWeb: 1,
+                                              backgroundColor: Colors.red,
+                                              textColor: Colors.white,
+                                              fontSize: 16.0
+                                          );
+                                        }
+                                      }).catchError((onError){
+                                        print(onError.toString());
+                                        Fluttertoast.showToast(
+                                            msg: onError.toString(),
+                                            toastLength: Toast.LENGTH_SHORT,
+                                            gravity: ToastGravity.BOTTOM,
+                                            timeInSecForIosWeb: 1,
+                                            backgroundColor: Colors.red,
+                                            textColor: Colors.white,
+                                            fontSize: 16.0
+                                        );
+                                      });
+                                      Navigator.pop(context);
+                                      navigateReplacement(context, ShowBeds());
+                                    },
+                                    child: Text('Confirm Book'),
+                                  )
+                                ],
+                              );
+                            }
+                        );
 
 
-                      }, currentTime: DateTime.now(), locale: LocaleType.ar);
+
+                        }, currentTime: DateTime.now(), locale: LocaleType.ar);
                 },
               child: Text(
                 "Book"

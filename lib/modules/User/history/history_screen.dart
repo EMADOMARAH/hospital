@@ -60,7 +60,12 @@ class _HistoryScreenState extends State<HistoryScreen> {
             itemCount: historyList.length
         ),
         fallback:(context) => Center(
-          child:  CircularProgressIndicator(),
+          child:  Text(
+            'No Data Found' ,
+            style: TextStyle(
+                fontSize: 20
+            ),
+          ),
         ),
       ),
     );

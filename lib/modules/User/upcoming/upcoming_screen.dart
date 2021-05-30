@@ -61,7 +61,12 @@ class _UpcomingScreenState extends State<UpcomingScreen> {
             itemCount: uocpmingList.length
         ),
         fallback:(context) => Center(
-          child:  CircularProgressIndicator(),
+          child:  Text(
+            'No Data Found' ,
+            style: TextStyle(
+                fontSize: 20
+            ),
+          ),
         ),
       ),
     );

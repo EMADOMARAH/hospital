@@ -8,6 +8,7 @@ import 'package:hospital/modules/User/upcoming/upcoming_screen.dart';
 import 'package:hospital/network/local/cache_helper.dart';
 import 'package:hospital/network/remote/dio_helper.dart';
 import 'package:hospital/shared/components/components.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class UserHomeScreen extends StatefulWidget {
   const UserHomeScreen({Key key}) : super(key: key);
@@ -30,6 +31,20 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
               },
               child: Icon(
                   Icons.account_circle_rounded,
+                size: 30,
+
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(right: 20),
+            child: GestureDetector(
+              onTap: (){
+                launch("tel://01067748312");
+
+              },
+              child: Icon(
+                Icons.contact_support_outlined,
                 size: 30,
 
               ),

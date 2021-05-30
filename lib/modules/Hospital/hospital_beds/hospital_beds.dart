@@ -42,13 +42,15 @@ class _HospitalBedsState extends State<HospitalBeds> {
           token: token
       )
           .then((value) {
-        //print(value.data['data']['beds']);
+        print(value.data['data']['beds']);
         hospitalinfo = value.data['data'];
+        print(hospitalinfo);
         hospitalBeds = value.data['data']['beds'];
         print(hospitalBeds);
-        setState(() {});
+        setState(() {}
+        );
       }).catchError((onError) {
-        print(onError);
+        print("ERROR  :  ${onError}");
       });
     });
 
@@ -114,7 +116,12 @@ class _HospitalBedsState extends State<HospitalBeds> {
             itemCount: 1
         ),
         fallback:(context) => Center(
-          child:  CircularProgressIndicator(),
+          child:  Text(
+            'No Data Found' ,
+            style: TextStyle(
+                fontSize: 20
+            ),
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
@@ -177,10 +184,7 @@ class _HospitalBedsState extends State<HospitalBeds> {
                                   textColor: Colors.white,
                                   fontSize: 16.0
                               );
-                              navigateReplacement(context, HospitalBeds(category: category,categoryName: categoryName,));
-
-
-
+                              //navigateReplacement(context, HospitalBeds(category: category,categoryName: categoryName,));
                             } else{
                               Fluttertoast.showToast(
                                   msg: value.data['message'],
@@ -205,6 +209,9 @@ class _HospitalBedsState extends State<HospitalBeds> {
                           });
 
                         }
+                        Navigator.pop(context);
+
+                        navigateReplacement(context, HospitalBeds(categoryName: categoryName,category: category,));
                       },
                       child: Text('Submit'),
                     )
