@@ -67,48 +67,56 @@ class _HospitalBedsState extends State<HospitalBeds> {
         condition: hospitalBeds.length>0,
         builder: (context) => ListView.separated(
             physics: BouncingScrollPhysics(),
-            itemBuilder: (context , index) =>Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                  child: Row(
-                    children: [
-                      Text(
-                        'Active : ${hospitalinfo['active']}',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.green,
-                        ),
-                      ),
-                      Spacer(),
-                      Text(
-                        'Reserved : ${hospitalinfo['reserved']}',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.blue,
-                        ),
-                      ),
-                      Spacer(),
-                      Text(
-                        'Out : ${hospitalinfo['out']}',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.red,
-                        ),
-                      ),
-                    ],
-                  ),
+            itemBuilder: (context , index) =>Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("assets/images/hos_bed_list.jpeg"),
+                  fit: BoxFit.cover,
                 ),
-                ListView.separated(
-                    physics: BouncingScrollPhysics(),
-                    shrinkWrap: true,
-                    itemBuilder: (context , index) =>HospotalShowBedsItem(hospitalBeds: hospitalBeds[index] , context: context , token: token , category:category , categoryName: categoryName ),
-                    separatorBuilder:(context , index) => SizedBox(
-                      height: 0,
+              ),
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    child: Row(
+                      children: [
+                        Text(
+                          'Active : ${hospitalinfo['active']}',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.green,
+                          ),
+                        ),
+                        Spacer(),
+                        Text(
+                          'Reserved : ${hospitalinfo['reserved']}',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.blue,
+                          ),
+                        ),
+                        Spacer(),
+                        Text(
+                          'Out : ${hospitalinfo['out']}',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.red,
+                          ),
+                        ),
+                      ],
                     ),
-                    itemCount: hospitalBeds.length
-                ),
-              ],
+                  ),
+                  ListView.separated(
+                      physics: BouncingScrollPhysics(),
+                      shrinkWrap: true,
+                      itemBuilder: (context , index) =>HospotalShowBedsItem(hospitalBeds: hospitalBeds[index] , context: context , token: token , category:category , categoryName: categoryName ),
+                      separatorBuilder:(context , index) => SizedBox(
+                        height: 0,
+                      ),
+                      itemCount: hospitalBeds.length
+                  ),
+                ],
+              ),
             ),
             separatorBuilder:(context , index) => SizedBox(
               height: 5,

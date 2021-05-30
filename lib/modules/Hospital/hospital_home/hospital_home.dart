@@ -17,92 +17,88 @@ class _HospitalHomeScreenState extends State<HospitalHomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       appBar: AppBar(
         actions: [
-          // Padding(
-          //   padding: const EdgeInsets.only(right: 20),
-          //   child: GestureDetector(
-          //     onTap: (){
-          //       navigateTo(context, ProfileScreen());
-          //     },
-          //     child: Icon(
-          //       Icons.account_circle_rounded,
-          //       size: 30,
-          //
-          //     ),
-          //   ),
-          // ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/hos_sections.jpeg"),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
 
-            MaterialButton(
-              onPressed: (){
-                navigateTo(context, HospitalBeds(category: "1" , categoryName: "Burn department",));
-              },
-              color: Colors.blue,
-              height: 100,
-              minWidth: double.infinity,
-              child: Text(
-                'Burn department' ,
-                style: TextStyle(
-                    fontSize: 25,
-                    color: Colors.white
+              MaterialButton(
+                onPressed: (){
+                  navigateTo(context, HospitalBeds(category: "1" , categoryName: "Burn department",));
+                },
+                color: Colors.blue,
+                height: 100,
+                minWidth: double.infinity,
+                child: Text(
+                  'Burn department' ,
+                  style: TextStyle(
+                      fontSize: 25,
+                      color: Colors.white
+                  ),
+                ),
+                shape: new RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(15.0),
                 ),
               ),
-              shape: new RoundedRectangleBorder(
-                borderRadius: new BorderRadius.circular(15.0),
+              SizedBox(
+                height: 50,
               ),
-            ),
-            SizedBox(
-              height: 50,
-            ),
-            MaterialButton(
-              onPressed: (){
-                navigateTo(context, HospitalBeds(category: "2" ,categoryName: "Children nurseries",));
-              },
-              color: Colors.blue,
-              height: 100,
-              minWidth: double.infinity,
-              child: Text(
-                'Children nurseries ' ,
-                style: TextStyle(
-                    fontSize: 25,
-                    color: Colors.white
+              MaterialButton(
+                onPressed: (){
+                  navigateTo(context, HospitalBeds(category: "2" ,categoryName: "Children nurseries",));
+                },
+                color: Colors.blue,
+                height: 100,
+                minWidth: double.infinity,
+                child: Text(
+                  'Children nurseries ' ,
+                  style: TextStyle(
+                      fontSize: 25,
+                      color: Colors.white
+                  ),
+                ),
+                shape: new RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(15.0),
                 ),
               ),
-              shape: new RoundedRectangleBorder(
-                borderRadius: new BorderRadius.circular(15.0),
+              SizedBox(
+                height: 50,
               ),
-            ),
-            SizedBox(
-              height: 50,
-            ),
-            MaterialButton(
-              onPressed: (){
-                navigateTo(context, HospitalBeds(category: "3" , categoryName: "Intensive care "));
-              },
-              color: Colors.blue,
-              height: 100,
-              minWidth: double.infinity,
-              child: Text(
-                'Intensive care ' ,
-                style: TextStyle(
-                    fontSize: 25,
-                    color: Colors.white
+              MaterialButton(
+                onPressed: (){
+                  navigateTo(context, HospitalBeds(category: "3" , categoryName: "Intensive care "));
+                },
+                color: Colors.blue,
+                height: 100,
+                minWidth: double.infinity,
+                child: Text(
+                  'Intensive care ' ,
+                  style: TextStyle(
+                      fontSize: 25,
+                      color: Colors.white
+                  ),
+                ),
+                shape: new RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(15.0),
                 ),
               ),
-              shape: new RoundedRectangleBorder(
-                borderRadius: new BorderRadius.circular(15.0),
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
       floatingActionButton: MaterialButton(

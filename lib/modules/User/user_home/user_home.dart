@@ -52,76 +52,84 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
           ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/user_sections.jpeg"),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
 
-            MaterialButton(
-              onPressed: (){
-                navigateTo(context, HospitalListScreen(category: "1",));
-              },
-              color: Colors.blue,
-              height: 100,
-              minWidth: double.infinity,
-              child: Text(
-                'Burn department' ,
-                style: TextStyle(
-                    fontSize: 25,
-                    color: Colors.white
+              MaterialButton(
+                onPressed: (){
+                  navigateTo(context, HospitalListScreen(category: "1",));
+                },
+                color: Colors.blue,
+                height: 100,
+                minWidth: double.infinity,
+                child: Text(
+                  'Burn department' ,
+                  style: TextStyle(
+                      fontSize: 25,
+                      color: Colors.white
+                  ),
+                ),
+                shape: new RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(15.0),
                 ),
               ),
-              shape: new RoundedRectangleBorder(
-                borderRadius: new BorderRadius.circular(15.0),
+              SizedBox(
+                height: 50,
               ),
-            ),
-            SizedBox(
-              height: 50,
-            ),
-            MaterialButton(
-              onPressed: (){
-                navigateTo(context, HospitalListScreen(category: "2",));
-              },
-              color: Colors.blue,
-              height: 100,
-              minWidth: double.infinity,
-              child: Text(
-                'Children nurseries ' ,
-                style: TextStyle(
-                    fontSize: 25,
-                    color: Colors.white
+              MaterialButton(
+                onPressed: (){
+                  navigateTo(context, HospitalListScreen(category: "2",));
+                },
+                color: Colors.blue,
+                height: 100,
+                minWidth: double.infinity,
+                child: Text(
+                  'Children nurseries ' ,
+                  style: TextStyle(
+                      fontSize: 25,
+                      color: Colors.white
+                  ),
+                ),
+                shape: new RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(15.0),
                 ),
               ),
-              shape: new RoundedRectangleBorder(
-                borderRadius: new BorderRadius.circular(15.0),
+              SizedBox(
+                height: 50,
               ),
-            ),
-            SizedBox(
-              height: 50,
-            ),
-            MaterialButton(
-              onPressed: (){
-                navigateTo(context, HospitalListScreen(category: "3",));
-              //navigateTo(context, HistoryScreen());
-              },
-              color: Colors.blue,
-              height: 100,
-              minWidth: double.infinity,
-              child: Text(
-                'Intensive care ' ,
-                style: TextStyle(
-                    fontSize: 25,
-                    color: Colors.white
+              MaterialButton(
+                onPressed: (){
+                  navigateTo(context, HospitalListScreen(category: "3",));
+                //navigateTo(context, HistoryScreen());
+                },
+                color: Colors.blue,
+                height: 100,
+                minWidth: double.infinity,
+                child: Text(
+                  'Intensive care ' ,
+                  style: TextStyle(
+                      fontSize: 25,
+                      color: Colors.white
+                  ),
+                ),
+                shape: new RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(15.0),
                 ),
               ),
-              shape: new RoundedRectangleBorder(
-                borderRadius: new BorderRadius.circular(15.0),
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
       floatingActionButton: MaterialButton(
