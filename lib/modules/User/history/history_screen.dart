@@ -43,7 +43,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-            'History'
+            'الحجوزات السابقه'
         ),
       ),
       body: ConditionalBuilder(
@@ -61,7 +61,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
         ),
         fallback:(context) => Center(
           child:  Text(
-            'No Data Found' ,
+            'لا يوجد بيانات' ,
             style: TextStyle(
                 fontSize: 20
             ),

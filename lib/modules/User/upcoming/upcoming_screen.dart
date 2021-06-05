@@ -44,7 +44,7 @@ class _UpcomingScreenState extends State<UpcomingScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Upcoming'
+          'الحجوزات القادمه'
         ),
       ),
       body: ConditionalBuilder(
@@ -62,7 +62,7 @@ class _UpcomingScreenState extends State<UpcomingScreen> {
         ),
         fallback:(context) => Center(
           child:  Text(
-            'No Data Found' ,
+            'لا يوجد بيانات' ,
             style: TextStyle(
                 fontSize: 20
             ),

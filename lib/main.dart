@@ -9,6 +9,7 @@ import 'package:hospital/modules/User/hospital_list/hospital_list_screen.dart';
 import 'package:hospital/modules/initial_screen/initial_screen.dart';
 import 'package:hospital/modules/User/user_auth/user_register.dart';
 import 'package:hospital/modules/User/user_home/user_home.dart';
+import 'package:hospital/modules/splash/splash_screen.dart';
 import 'package:hospital/network/local/cache_helper.dart';
 import 'package:hospital/network/remote/dio_helper.dart';
 
@@ -17,29 +18,12 @@ void main() async {
   HttpOverrides.global = new MyHttpOverrides();
   DioHelper.init();
   await CacheHelper.init();
-  Widget screen;
-  bool isUser = CacheHelper.getData(key: "type") ;
-  if (isUser == true) {
-    screen = UserHomeScreen();
-  }else if (isUser == false) {
-    screen = HospitalHomeScreen();
-  } else{
-    screen = InitialScreen();
-  }
-  print(screen.toString());
+
   runApp(MyApp(
-    screen: screen,
   ));
 }
 
 class MyApp extends StatelessWidget {
-  Widget screen ;
-
-  MyApp({this.screen});
-
-
-
-
 
 
   // This widget is the root of your application.
@@ -47,7 +31,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: screen,
+      home: SplashScreen(),
     );
   }
 }

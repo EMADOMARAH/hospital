@@ -45,7 +45,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Profile"
+          "الصفحه الشخصيه"
         ),
       ),
       body: Padding(
@@ -57,7 +57,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               height: 20,
             ),
             Text(
-              "Name  : ${profileMap['name']}",
+              "الاسم   : ${profileMap['name']}",
               style: TextStyle(
                 fontSize: 20
               ),
@@ -66,7 +66,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               height: 20,
             ),
             Text(
-                "Email : ${profileMap['email']}",
+                "الايميل : ${profileMap['email']}",
               style: TextStyle(
                   fontSize: 20
               ),
@@ -75,7 +75,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               height: 20,
             ),
             Text(
-                "Phone : ${profileMap['phone']}",
+                "الرقم : ${profileMap['phone']}",
               style: TextStyle(
                   fontSize: 20
               ),
@@ -84,7 +84,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               height: 20,
             ),
             Text(
-                "Gender : ${profileMap['gender']}",
+                "النوع : ${profileMap['gender']}",
               style: TextStyle(
                   fontSize: 20
               ),
@@ -99,7 +99,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     navigateTo(context, UpcomingScreen());
                   },
                 child: Text(
-                  'Upcoming'
+                  'الحجوزات القادمه'
                 ),
                 color: Colors.blue,
               ),
@@ -114,7 +114,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   navigateTo(context, HistoryScreen());
                 },
                 child: Text(
-                    'History'
+                    'الحجوزات السابقه'
                 ),
                 color: Colors.blue,
               ),

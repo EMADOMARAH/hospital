@@ -141,6 +141,12 @@ class _UserRegisterScreenState extends State<UserRegisterScreen> {
                     validator: (String value){
                       if (value.isEmpty) {
                         return "ادخل رقم الهاتف";
+                      }else if (value.length !=11) {
+                        return "ادخل رقم هاتف صحيح مكون من 11 رقم";
+                      }  else if (!value.startsWith("0" , 0)) {
+                        return"ادخل رقم هاتف يبدأ ب 01";
+                      }  else if (!value.startsWith("1" , 1)) {
+                        return"ادخل رقم هاتف يبدأ ب 01";
                       }
                       return null;
                     },
@@ -232,7 +238,7 @@ class _UserRegisterScreenState extends State<UserRegisterScreen> {
         navigateReplacement(context, UserHomeScreen());
         Fluttertoast.showToast(
             msg: "تم التسجيل بنجاح",
-            toastLength: Toast.LENGTH_SHORT,
+            toastLength: Toast.LENGTH_LONG,
             gravity: ToastGravity.BOTTOM,
             timeInSecForIosWeb: 1,
             backgroundColor: Colors.green,
@@ -242,7 +248,7 @@ class _UserRegisterScreenState extends State<UserRegisterScreen> {
       } else{
         Fluttertoast.showToast(
             msg: value.data['message'],
-            toastLength: Toast.LENGTH_SHORT,
+            toastLength: Toast.LENGTH_LONG,
             gravity: ToastGravity.BOTTOM,
             timeInSecForIosWeb: 1,
             backgroundColor: Colors.red,
@@ -255,7 +261,7 @@ class _UserRegisterScreenState extends State<UserRegisterScreen> {
           print(onError.toString());
           Fluttertoast.showToast(
               msg: onError.toString(),
-              toastLength: Toast.LENGTH_SHORT,
+              toastLength: Toast.LENGTH_LONG,
               gravity: ToastGravity.BOTTOM,
               timeInSecForIosWeb: 1,
               backgroundColor: Colors.red,

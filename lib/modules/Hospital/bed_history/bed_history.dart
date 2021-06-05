@@ -48,7 +48,7 @@ class _BedHistoryState extends State<BedHistory> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Bed Reservation'
+          'حجوزات السرير'
         ),
 
       ),
@@ -64,7 +64,7 @@ class _BedHistoryState extends State<BedHistory> {
         ),
         fallback:(context) => Center(
           child:  Text(
-            'No Data Found' ,
+            'لا يوجد بيانات' ,
             style: TextStyle(
               fontSize: 20
             ),

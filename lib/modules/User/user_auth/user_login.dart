@@ -143,7 +143,7 @@ class _UserLoginScreenState extends State<UserLoginScreen> {
              navigateReplacement(context, UserHomeScreen());
             Fluttertoast.showToast(
                 msg: "تم التسجيل بنجاح",
-                toastLength: Toast.LENGTH_SHORT,
+                toastLength: Toast.LENGTH_LONG,
                 gravity: ToastGravity.BOTTOM,
                 timeInSecForIosWeb: 1,
                 backgroundColor: Colors.green,
@@ -153,7 +153,7 @@ class _UserLoginScreenState extends State<UserLoginScreen> {
           }else{
             Fluttertoast.showToast(
                 msg: value.data['message'],
-                toastLength: Toast.LENGTH_SHORT,
+                toastLength: Toast.LENGTH_LONG,
                 gravity: ToastGravity.BOTTOM,
                 timeInSecForIosWeb: 1,
                 backgroundColor: Colors.red,
@@ -167,7 +167,7 @@ class _UserLoginScreenState extends State<UserLoginScreen> {
       print(onError.toString());
       Fluttertoast.showToast(
           msg: onError.toString(),
-          toastLength: Toast.LENGTH_SHORT,
+          toastLength: Toast.LENGTH_LONG,
           gravity: ToastGravity.BOTTOM,
           timeInSecForIosWeb: 1,
           backgroundColor: Colors.red,

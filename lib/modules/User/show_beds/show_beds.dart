@@ -60,25 +60,17 @@ class _ShowBedsState extends State<ShowBeds> {
       child: Scaffold(
         body: ConditionalBuilder(
           condition: myBeds.length>0,
-          builder: (context) => Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage("assets/images/bed_list.jpeg"),
-                fit: BoxFit.cover,
+          builder: (context) => ListView.separated(
+              physics: BouncingScrollPhysics(),
+              itemBuilder: (context , index) => BedItem(context: context, bedId: myBeds[index]["id"] , cost:myBeds[index]["day_cost"], status:myBeds[index]["status"]  ),
+              separatorBuilder:(context , index) => SizedBox(
+                height: 5,
               ),
-            ),
-            child: ListView.separated(
-                physics: BouncingScrollPhysics(),
-                itemBuilder: (context , index) => BedItem(context: context, bedId: myBeds[index]["id"] , cost:myBeds[index]["day_cost"], status:myBeds[index]["status"]  ),
-                separatorBuilder:(context , index) => SizedBox(
-                  height: 5,
-                ),
-                itemCount: myBeds.length
-            ),
+              itemCount: myBeds.length
           ),
           fallback:(context) => Center(
             child:  Text(
-              'No Data Found' ,
+              'لا يوجد بيانات' ,
               style: TextStyle(
                   fontSize: 20
               ),

@@ -67,56 +67,48 @@ class _HospitalBedsState extends State<HospitalBeds> {
         condition: hospitalBeds.length>0,
         builder: (context) => ListView.separated(
             physics: BouncingScrollPhysics(),
-            itemBuilder: (context , index) =>Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage("assets/images/hos_bed_list.jpeg"),
-                  fit: BoxFit.cover,
-                ),
-              ),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                    child: Row(
-                      children: [
-                        Text(
-                          'Active : ${hospitalinfo['active']}',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.green,
-                          ),
+            itemBuilder: (context , index) =>Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  child: Row(
+                    children: [
+                      Text(
+                        'نشط : ${hospitalinfo['active']}',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.green,
                         ),
-                        Spacer(),
-                        Text(
-                          'Reserved : ${hospitalinfo['reserved']}',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.blue,
-                          ),
-                        ),
-                        Spacer(),
-                        Text(
-                          'Out : ${hospitalinfo['out']}',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.red,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  ListView.separated(
-                      physics: BouncingScrollPhysics(),
-                      shrinkWrap: true,
-                      itemBuilder: (context , index) =>HospotalShowBedsItem(hospitalBeds: hospitalBeds[index] , context: context , token: token , category:category , categoryName: categoryName ),
-                      separatorBuilder:(context , index) => SizedBox(
-                        height: 0,
                       ),
-                      itemCount: hospitalBeds.length
+                      Spacer(),
+                      Text(
+                        'محجوز : ${hospitalinfo['reserved']}',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.blue,
+                        ),
+                      ),
+                      Spacer(),
+                      Text(
+                        'خارج الخدمه : ${hospitalinfo['out']}',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.red,
+                        ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+                ListView.separated(
+                    physics: BouncingScrollPhysics(),
+                    shrinkWrap: true,
+                    itemBuilder: (context , index) =>HospotalShowBedsItem(hospitalBeds: hospitalBeds[index] , context: context , token: token , category:category , categoryName: categoryName ),
+                    separatorBuilder:(context , index) => SizedBox(
+                      height: 0,
+                    ),
+                    itemCount: hospitalBeds.length
+                ),
+              ],
             ),
             separatorBuilder:(context , index) => SizedBox(
               height: 5,
@@ -125,7 +117,7 @@ class _HospitalBedsState extends State<HospitalBeds> {
         ),
         fallback:(context) => Center(
           child:  Text(
-            'No Data Found' ,
+            'لا يوجد بيانات' ,
             style: TextStyle(
                 fontSize: 20
             ),
@@ -134,7 +126,7 @@ class _HospitalBedsState extends State<HospitalBeds> {
       ),
       floatingActionButton: FloatingActionButton(
         child: Text(
-          'Add'
+          'اضافه'
         ),
         onPressed: (){
           showDialog(
@@ -142,7 +134,7 @@ class _HospitalBedsState extends State<HospitalBeds> {
               builder: (BuildContext context){
                 return AlertDialog(
                   scrollable: true,
-                  title: Text('Add Bed'),
+                  title: Text('اضافه سرير'),
                   content: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Form(
@@ -151,14 +143,14 @@ class _HospitalBedsState extends State<HospitalBeds> {
                         children: [
                           TextFormField(
                             decoration: InputDecoration(
-                              labelText: 'Day Cost (LE)',
+                              labelText: 'تكلفه يوميه',
                               icon: Icon(Icons.monetization_on),
                             ),
                             controller: costController,
                             keyboardType: TextInputType.number,
                             validator:(String value){
                               if (value.isEmpty) {
-                                return "Enter Day Cost";
+                                return "ادخل التكلفه اليوميه";
                               }
                               return null;
                             },
@@ -185,7 +177,7 @@ class _HospitalBedsState extends State<HospitalBeds> {
                             if (value.data['status']) {
                               Fluttertoast.showToast(
                                   msg: value.data['message'],
-                                  toastLength: Toast.LENGTH_SHORT,
+                                  toastLength: Toast.LENGTH_LONG,
                                   gravity: ToastGravity.BOTTOM,
                                   timeInSecForIosWeb: 1,
                                   backgroundColor: Colors.green,
@@ -196,7 +188,7 @@ class _HospitalBedsState extends State<HospitalBeds> {
                             } else{
                               Fluttertoast.showToast(
                                   msg: value.data['message'],
-                                  toastLength: Toast.LENGTH_SHORT,
+                                  toastLength: Toast.LENGTH_LONG,
                                   gravity: ToastGravity.BOTTOM,
                                   timeInSecForIosWeb: 1,
                                   backgroundColor: Colors.red,
@@ -207,7 +199,7 @@ class _HospitalBedsState extends State<HospitalBeds> {
                           }).catchError((onError){
                             Fluttertoast.showToast(
                                 msg: onError.toString(),
-                                toastLength: Toast.LENGTH_SHORT,
+                                toastLength: Toast.LENGTH_LONG,
                                 gravity: ToastGravity.BOTTOM,
                                 timeInSecForIosWeb: 1,
                                 backgroundColor: Colors.red,
@@ -221,7 +213,7 @@ class _HospitalBedsState extends State<HospitalBeds> {
 
                         navigateReplacement(context, HospitalBeds(categoryName: categoryName,category: category,));
                       },
-                      child: Text('Submit'),
+                      child: Text('تأكيد'),
                     )
                   ],
                 );
@@ -237,13 +229,13 @@ class _HospitalBedsState extends State<HospitalBeds> {
   void openPopup(context) {
     Alert(
         context: context,
-        title: "Edit",
+        title: "تعديل",
         content: Column(
           children: <Widget>[
             TextField(
               decoration: InputDecoration(
                 icon: Icon(Icons.monetization_on),
-                labelText: 'Day Cost',
+                labelText: 'تكلفه يوميه',
               ),
             ),
             new DropdownButton<String>(
@@ -265,7 +257,7 @@ class _HospitalBedsState extends State<HospitalBeds> {
           DialogButton(
             onPressed: () => Navigator.pop(context),
             child: Text(
-              "LOGIN",
+              "تعديل",
               style: TextStyle(color: Colors.white, fontSize: 20),
             ),
           )

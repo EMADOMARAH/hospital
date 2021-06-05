@@ -56,7 +56,7 @@ class _HospitalListScreenState extends State<HospitalListScreen> {
 
       appBar: AppBar(
         title: DefaultFormField(
-          hint: "Search...",
+          hint: "بحث...",
           controller: searchControoler
         ) ,
         leading: GestureDetector(
@@ -90,7 +90,7 @@ class _HospitalListScreenState extends State<HospitalListScreen> {
                 });
               },
             child: Text(
-              'Search'
+              'بحث'
             ),
               ),
           MaterialButton(
@@ -115,7 +115,7 @@ class _HospitalListScreenState extends State<HospitalListScreen> {
               });
             },
             child: Text(
-                'By distance'
+                'بالمسافه'
             ),
           ),
         ],
@@ -133,7 +133,7 @@ class _HospitalListScreenState extends State<HospitalListScreen> {
          ),
          fallback:(context) => Center(
            child:  Text(
-             'No Data Found' ,
+             'لا يوجد بيانات' ,
              style: TextStyle(
                  fontSize: 20
              ),

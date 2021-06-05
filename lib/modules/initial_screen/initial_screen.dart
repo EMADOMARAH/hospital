@@ -2,7 +2,10 @@ import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:hospital/modules/Hospital/hospital_auth/hospital_login.dart';
+import 'package:hospital/modules/Hospital/hospital_home/hospital_home.dart';
 import 'package:hospital/modules/User/user_auth/user_login.dart';
+import 'package:hospital/modules/User/user_home/user_home.dart';
+import 'package:hospital/network/local/cache_helper.dart';
 import 'package:hospital/shared/components/components.dart';
 
 class InitialScreen extends StatefulWidget {
@@ -12,7 +15,31 @@ class InitialScreen extends StatefulWidget {
   _InitialScreenState createState() => _InitialScreenState();
 }
 
+
+
 class _InitialScreenState extends State<InitialScreen> {
+
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    WidgetsFlutterBinding.ensureInitialized();
+
+    Widget screen;
+    bool isUser = CacheHelper.getData(key: "type") ;
+    if (isUser == true) {
+      screen = UserHomeScreen();
+      navigateReplacement(context, screen);
+    }else if (isUser == false) {
+      screen = HospitalHomeScreen();
+      navigateReplacement(context, screen);
+    } else{
+    }
+
+
+
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

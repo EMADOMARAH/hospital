@@ -52,84 +52,76 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
           ),
         ],
       ),
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/images/user_sections.jpeg"),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
 
-              MaterialButton(
-                onPressed: (){
-                  navigateTo(context, HospitalListScreen(category: "1",));
-                },
-                color: Colors.blue,
-                height: 100,
-                minWidth: double.infinity,
-                child: Text(
-                  'Burn department' ,
-                  style: TextStyle(
-                      fontSize: 25,
-                      color: Colors.white
-                  ),
-                ),
-                shape: new RoundedRectangleBorder(
-                  borderRadius: new BorderRadius.circular(15.0),
+            MaterialButton(
+              onPressed: (){
+                navigateTo(context, HospitalListScreen(category: "1",));
+              },
+              color: Colors.blue,
+              height: 100,
+              minWidth: double.infinity,
+              child: Text(
+                'قسم الحروق' ,
+                style: TextStyle(
+                    fontSize: 25,
+                    color: Colors.white
                 ),
               ),
-              SizedBox(
-                height: 50,
+              shape: new RoundedRectangleBorder(
+                borderRadius: new BorderRadius.circular(15.0),
               ),
-              MaterialButton(
-                onPressed: (){
-                  navigateTo(context, HospitalListScreen(category: "2",));
-                },
-                color: Colors.blue,
-                height: 100,
-                minWidth: double.infinity,
-                child: Text(
-                  'Children nurseries ' ,
-                  style: TextStyle(
-                      fontSize: 25,
-                      color: Colors.white
-                  ),
-                ),
-                shape: new RoundedRectangleBorder(
-                  borderRadius: new BorderRadius.circular(15.0),
-                ),
-              ),
-              SizedBox(
-                height: 50,
-              ),
-              MaterialButton(
-                onPressed: (){
-                  navigateTo(context, HospitalListScreen(category: "3",));
-                //navigateTo(context, HistoryScreen());
-                },
-                color: Colors.blue,
-                height: 100,
-                minWidth: double.infinity,
-                child: Text(
-                  'Intensive care ' ,
-                  style: TextStyle(
-                      fontSize: 25,
-                      color: Colors.white
-                  ),
-                ),
-                shape: new RoundedRectangleBorder(
-                  borderRadius: new BorderRadius.circular(15.0),
+            ),
+            SizedBox(
+              height: 50,
+            ),
+            MaterialButton(
+              onPressed: (){
+                navigateTo(context, HospitalListScreen(category: "2",));
+              },
+              color: Colors.blue,
+              height: 100,
+              minWidth: double.infinity,
+              child: Text(
+                'قسم الحضانات' ,
+                style: TextStyle(
+                    fontSize: 25,
+                    color: Colors.white
                 ),
               ),
-            ],
-          ),
+              shape: new RoundedRectangleBorder(
+                borderRadius: new BorderRadius.circular(15.0),
+              ),
+            ),
+            SizedBox(
+              height: 50,
+            ),
+            MaterialButton(
+              onPressed: (){
+                navigateTo(context, HospitalListScreen(category: "3",));
+              //navigateTo(context, HistoryScreen());
+              },
+              color: Colors.blue,
+              height: 100,
+              minWidth: double.infinity,
+              child: Text(
+                'العنايه المركزه ' ,
+                style: TextStyle(
+                    fontSize: 25,
+                    color: Colors.white
+                ),
+              ),
+              shape: new RoundedRectangleBorder(
+                borderRadius: new BorderRadius.circular(15.0),
+              ),
+            ),
+          ],
         ),
       ),
       floatingActionButton: MaterialButton(
@@ -146,7 +138,7 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
               navigateReplacement(context, InitialScreen());
               Fluttertoast.showToast(
                   msg: "تم تسجيل الخروج بنجاح",
-                  toastLength: Toast.LENGTH_SHORT,
+                  toastLength: Toast.LENGTH_LONG,
                   gravity: ToastGravity.BOTTOM,
                   timeInSecForIosWeb: 1,
                   backgroundColor: Colors.green,
@@ -156,7 +148,7 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
             } else{
               Fluttertoast.showToast(
                   msg: value.data['message'],
-                  toastLength: Toast.LENGTH_SHORT,
+                  toastLength: Toast.LENGTH_LONG,
                   gravity: ToastGravity.BOTTOM,
                   timeInSecForIosWeb: 1,
                   backgroundColor: Colors.red,
@@ -169,7 +161,7 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
             print(onError.toString());
             Fluttertoast.showToast(
                 msg: onError.toString(),
-                toastLength: Toast.LENGTH_SHORT,
+                toastLength: Toast.LENGTH_LONG,
                 gravity: ToastGravity.BOTTOM,
                 timeInSecForIosWeb: 1,
                 backgroundColor: Colors.red,
@@ -179,7 +171,7 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
           });
         },
         child: Text(
-          'Logout' ,
+          'تسجيل الخروج' ,
 
         ),
       ),
