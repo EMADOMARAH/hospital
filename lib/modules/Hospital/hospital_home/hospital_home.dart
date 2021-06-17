@@ -32,7 +32,7 @@ class _HospitalHomeScreenState extends State<HospitalHomeScreen> {
 
             MaterialButton(
               onPressed: (){
-                navigateTo(context, HospitalBeds(category: "1" , categoryName: "Burn department",));
+                navigateTooo(context, HospitalBeds(category: "1" , categoryName: "Burn department",));
               },
               color: Colors.blue,
               height: 100,
@@ -53,7 +53,7 @@ class _HospitalHomeScreenState extends State<HospitalHomeScreen> {
             ),
             MaterialButton(
               onPressed: (){
-                navigateTo(context, HospitalBeds(category: "2" ,categoryName: "Children nurseries",));
+                navigateTooo(context, HospitalBeds(category: "2" ,categoryName: "Children nurseries",));
               },
               color: Colors.blue,
               height: 100,
@@ -74,7 +74,7 @@ class _HospitalHomeScreenState extends State<HospitalHomeScreen> {
             ),
             MaterialButton(
               onPressed: (){
-                navigateTo(context, HospitalBeds(category: "3" , categoryName: "Intensive care "));
+                navigateTooo(context, HospitalBeds(category: "3" , categoryName: "Intensive care "));
               },
               color: Colors.blue,
               height: 100,

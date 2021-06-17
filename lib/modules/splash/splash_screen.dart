@@ -12,51 +12,19 @@ class SplashScreen extends StatefulWidget {
   _SplashScreenState createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderStateMixin {
-  var _visible = true;
+class _SplashScreenState extends State<SplashScreen>  {
 
-  AnimationController animationController;
-  Animation<double> animation;
-
-  startTime() async {
-    var _duration = new Duration(seconds: 3);
-    return new Timer(_duration, navigationPage);
-  }
-
-  void navigationPage() {
-    navigateReplacement(context, InitialScreen());
-  }
-
-  @override
-  dispose() {
-    animationController.dispose();
-    super.dispose();
-  }
 
   @override
   void initState() {
     super.initState();
-    animationController = new AnimationController(
-      vsync: this,
-      duration: new Duration(seconds: 3),
-    );
-    animation =
-    new CurvedAnimation(parent: animationController, curve: Curves.easeOut);
-
-    SchedulerBinding.instance.addPostFrameCallback((_)
-    {
-      animation.addListener(()
-      =>
-          this.setState(()
-          {}));
-      animationController.forward();
-
-      setState(()
-      {
-        _visible = !_visible;
-      });
-      startTime();
+    WidgetsFlutterBinding.ensureInitialized();
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+        Timer(Duration(seconds: 3),
+              () =>  Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => InitialScreen()))
+      );
     });
+
   }
   @override
   Widget build(BuildContext context) {

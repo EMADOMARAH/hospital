@@ -1,5 +1,9 @@
+import 'dart:core';
+
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_conditional_rendering/conditional.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -286,7 +290,7 @@ Widget HospitalItem({
       CacheHelper.saveData(key: 'cat', value: category);
       CacheHelper.saveData(key: 'hospitalId', value: hospitals["id"]);
 
-      navigateTo(context, ShowBeds());
+      navigateTooo(context, ShowBeds());
     },
     child: Container(
       padding: EdgeInsets.all(10.0),
@@ -368,7 +372,7 @@ Widget HospotalShowBedsItem({
   padding: const EdgeInsets.symmetric(horizontal: 20.0 , vertical: 10),
   child: GestureDetector(
     onTap: () {
-      navigateTo(context, BedHistory(bedId: '${hospitalBeds['id']}',));
+      navigateTooo(context, BedHistory(bedId: '${hospitalBeds['id']}',));
     },
     child: Container(
       padding: EdgeInsets.all(10.0),
@@ -776,14 +780,19 @@ Widget DefaultFormField({
     );
 
 
-void navigateTo(BuildContext context , Widget screen)
+void navigateTooo(BuildContext context , Widget screen)
 {
-  Navigator.push(
+  SchedulerBinding.instance.addPostFrameCallback((_) {
+
+    Navigator.push(
     context,
     MaterialPageRoute(builder: (context) => screen),
   );
+  });
 }
 
 void navigateReplacement(BuildContext context , Widget screen){
+  SchedulerBinding.instance.addPostFrameCallback((_) {
   Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => screen));
+  });
 }

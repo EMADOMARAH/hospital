@@ -4,6 +4,7 @@ import 'package:hospital/modules/User/upcoming/upcoming_screen.dart';
 import 'package:hospital/network/local/cache_helper.dart';
 import 'package:hospital/network/remote/dio_helper.dart';
 import 'package:hospital/shared/components/components.dart';
+import 'package:rating_dialog/rating_dialog.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key key}) : super(key: key);
@@ -42,11 +43,37 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
           "الصفحه الشخصيه"
         ),
+        actions: [
+          MaterialButton(
+          child: Text(
+          'Rate Us',
+            style: TextStyle(
+              color: Colors.white
+            ),
+      ),
+          onPressed: (){
+              showDialog(context: context, builder:(context) => RatingDialog(
+                // your app's name?
+                title: 'قيمنا',
+                // encourage your user to leave a high rating?
+                message:
+                'اضغط على النجوم لوضع تقيمك و يمكنك ترك رساله',
+                // your app's logo?
+                submitButton: 'تأكيد',
+                onCancelled: () => print('cancelled'),
+                onSubmitted: (response) {
+                },
+                commentHint: "اضف تعليقك",
+              )
+              );
+          }),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -96,7 +123,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               alignment: Alignment.center,
               child: MaterialButton(
                   onPressed:(){
-                    navigateTo(context, UpcomingScreen());
+                    navigateTooo(context, UpcomingScreen());
                   },
                 child: Text(
                   'الحجوزات القادمه'
@@ -111,7 +138,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               alignment: Alignment.center,
               child: MaterialButton(
                 onPressed:(){
-                  navigateTo(context, HistoryScreen());
+                  navigateTooo(context, HistoryScreen());
                 },
                 child: Text(
                     'الحجوزات السابقه'
@@ -125,4 +152,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ),
     );
   }
+
+
+
 }

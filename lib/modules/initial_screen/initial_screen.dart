@@ -120,7 +120,7 @@ class _InitialScreenState extends State<InitialScreen> {
                     //للدخول علي صفحه انشاء الحساب
                     (
                   onTap: () {
-                    navigateTo(context, UserLoginScreen());
+                    navigateTooo(context, UserLoginScreen());
                   },
                   child: Text("تسجيل الدخول كمستخدم", style: TextStyle(color: Colors.white, fontSize: 20)),
                 ),
@@ -140,7 +140,7 @@ class _InitialScreenState extends State<InitialScreen> {
                     //للدخول علي صفحه انشاء الحساب
                     (
                   onTap: () {
-                    navigateTo(context, HospitalLoginScreen());
+                    navigateTooo(context, HospitalLoginScreen());
                   },
                   child: Text("تسجيل الدخول كمستشفي",
                       style: TextStyle(

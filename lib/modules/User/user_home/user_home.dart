@@ -27,7 +27,7 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
             padding: const EdgeInsets.only(right: 20),
             child: GestureDetector(
               onTap: (){
-                navigateTo(context, ProfileScreen());
+                navigateTooo(context, ProfileScreen());
               },
               child: Icon(
                   Icons.account_circle_rounded,
@@ -62,7 +62,13 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
 
             MaterialButton(
               onPressed: (){
-                navigateTo(context, HospitalListScreen(category: "1",));
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    
+                      builder: (context) => HospitalListScreen(category: "1",)
+                  ),
+                );
               },
               color: Colors.blue,
               height: 100,
@@ -83,7 +89,7 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
             ),
             MaterialButton(
               onPressed: (){
-                navigateTo(context, HospitalListScreen(category: "2",));
+                navigateTooo(context, HospitalListScreen(category: "2",));
               },
               color: Colors.blue,
               height: 100,
@@ -104,7 +110,7 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
             ),
             MaterialButton(
               onPressed: (){
-                navigateTo(context, HospitalListScreen(category: "3",));
+                navigateTooo(context, HospitalListScreen(category: "3",));
               //navigateTo(context, HistoryScreen());
               },
               color: Colors.blue,

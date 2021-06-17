@@ -82,7 +82,7 @@ class _HospitalLoginScreenState extends State<HospitalLoginScreen> {
                             //للدخول علي صفحه انشاء الحساب
                             (
                           onTap: () {
-                           navigateTo(context, HospitalRegisterScreen());
+                           navigateTooo(context, HospitalRegisterScreen());
                           },
                           child: Text(
                             "انشاء حساب جديد",

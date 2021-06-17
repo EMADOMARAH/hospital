@@ -80,7 +80,7 @@ class _UserLoginScreenState extends State<UserLoginScreen> {
                           //للدخول علي صفحه انشاء الحساب
                           (
                         onTap: () {
-                          navigateTo(context, UserRegisterScreen());
+                          navigateTooo(context, UserRegisterScreen());
                         },
                         child: Text(
                           "انشاء حساب جديد",

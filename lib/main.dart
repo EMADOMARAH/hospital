@@ -15,12 +15,13 @@ import 'package:hospital/network/remote/dio_helper.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  HttpOverrides.global = new MyHttpOverrides();
-  DioHelper.init();
   await CacheHelper.init();
 
-  runApp(MyApp(
-  ));
+  HttpOverrides.global = new MyHttpOverrides();
+
+  DioHelper.init();
+
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {

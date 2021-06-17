@@ -163,6 +163,8 @@ class _UserRegisterScreenState extends State<UserRegisterScreen> {
                     validator: (String value){
                       if (value.isEmpty) {
                         return "ادخل الرقم القومى";
+                      }if (value.length !=14) {
+                        return "ادخل رقم قومى صحيح 14 رقم فقط";
                       }
                       return null;
                     },
