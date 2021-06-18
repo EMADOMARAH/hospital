@@ -13,6 +13,7 @@ import 'package:hospital/modules/User/show_beds/show_beds.dart';
 import 'package:hospital/network/local/cache_helper.dart';
 import 'package:hospital/network/remote/dio_helper.dart';
 import 'package:intl/intl.dart';
+import 'package:rating_dialog/rating_dialog.dart';
 
 
 Widget HospitalList({
@@ -220,6 +221,30 @@ Widget UpcomingItem({
       children: [
         Row(
           children: [
+            MaterialButton(
+                child: Text(
+                  'Rate Us',
+                  style: TextStyle(
+                      color: Colors.blue
+                  ),
+                ),
+                onPressed: (){
+                  showDialog(context: context, builder:(context) => RatingDialog(
+                    // your app's name?
+                    title: 'قيمنا',
+                    // encourage your user to leave a high rating?
+                    message:
+                    'اضغط على النجوم لوضع تقيمك و يمكنك ترك رساله',
+                    // your app's logo?
+                    submitButton: 'تأكيد',
+                    onCancelled: () => print('cancelled'),
+                    onSubmitted: (response) {
+                    },
+                    commentHint: "اضف تعليقك",
+                  )
+                  );
+                }),
+            Spacer(),
             Text(
               '${upcoming['bed']['id']}',
               maxLines: 1,
@@ -230,14 +255,18 @@ Widget UpcomingItem({
             ),
             Spacer(
             ),
-            Text(
-              upcoming['bed']['hospital']['name'] ,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
+            Expanded(
+              child: Text(
+                upcoming['bed']['hospital']['name'] ,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
             Text(
               " : مستشفى " ,
             ),
+
+
 
           ],
         ),
@@ -251,8 +280,7 @@ Widget UpcomingItem({
             Text(
               " : تاريخ" ,
             ),
-            Spacer(
-            ),
+            Spacer(),
             Text(
               "${upcoming['bed']['day_cost']}" ,
               maxLines: 1,

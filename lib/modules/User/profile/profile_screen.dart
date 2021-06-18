@@ -49,31 +49,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
         title: Text(
           "الصفحه الشخصيه"
         ),
-        actions: [
-          MaterialButton(
-          child: Text(
-          'Rate Us',
-            style: TextStyle(
-              color: Colors.white
-            ),
-      ),
-          onPressed: (){
-              showDialog(context: context, builder:(context) => RatingDialog(
-                // your app's name?
-                title: 'قيمنا',
-                // encourage your user to leave a high rating?
-                message:
-                'اضغط على النجوم لوضع تقيمك و يمكنك ترك رساله',
-                // your app's logo?
-                submitButton: 'تأكيد',
-                onCancelled: () => print('cancelled'),
-                onSubmitted: (response) {
-                },
-                commentHint: "اضف تعليقك",
-              )
-              );
-          }),
-        ],
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
