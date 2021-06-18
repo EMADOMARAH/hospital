@@ -42,7 +42,8 @@ class _HospitalListScreenState extends State<HospitalListScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       token = CacheHelper.getData(key: "token");
       await DioHelper.getHospitals(
-              url: "/api/v1/user/categories/${category}/hospitals", userType: {"type": "user"}, token: token)
+              url: "/api/v1/user/categories/${category}/hospitals",
+          userType: {"type": "user"}, token: token)
           .then((value) {
         //print(value.data);
         myHospitlas = value.data["data"];
@@ -75,7 +76,7 @@ class _HospitalListScreenState extends State<HospitalListScreen> {
                       userType: {"type": "user", "search": searchControoler.text},
                       token: token)
                   .then((value) {
-                print(value.data);
+                //print(value.data);
                 myHospitlas = value.data["data"];
                 setState(() {});
               }).catchError((onError) {
@@ -86,23 +87,27 @@ class _HospitalListScreenState extends State<HospitalListScreen> {
           ),
           MaterialButton(
             onPressed: () async {
-              if (await confirm(
+              if ( await confirm(
                 context,
                 title: Text('كيفيه العرض'),
                 content: Text('عرض البيانات طبقا للموقع.'),
                 textOK: Text('موقك الاساسى'),
                 textCancel: Text('موقعك الحالى'),
               )) {
-                return await DioHelper.getHospitals(
-                        url: "/api/v1/user/categories/${category}/hospitals", userType: {
+                return DioHelper.getHospitals(
+                        url: "/api/v1/user/categories/${category}/hospitals",
+                    userType: {
                           "type": "user" ,
-                           "search": searchControoler.text,
                            "distance": true
-                }, token: token)
+                },
+                    token: token)
                     .then((value) {
-                  //print(value.data);
+                  print(value.data);
                   myHospitlas = value.data["data"];
+                 // print( value.data["data"]);
+
                   setState(() {});
+
                 }).catchError((onError) {
                   print(onError.toString());
                 });
@@ -110,19 +115,19 @@ class _HospitalListScreenState extends State<HospitalListScreen> {
               await getLoc();
               print("Long : ${_currentPosition.longitude} , Lat : ${_currentPosition.latitude}");
 
-              return await DioHelper.getHospitals(
+              return DioHelper.getHospitals(
                       url: "/api/v1/user/categories/${category}/hospitals",
                       userType: {
                         "type": "user",
-                        "search": searchControoler.text,
                         "distance": true,
-                        "lat": _currentPosition.latitude,
-                        "long": _currentPosition.longitude,
+                        "lat": _currentPosition.latitude.toDouble(),
+                        "long": _currentPosition.longitude.toDouble()
                       },
                       token: token)
                   .then((value) {
-                //print(value.data);
+                print(value.data);
                 myHospitlas = value.data["data"];
+               // print( value.data["data"]);
                 setState(() {});
               }).catchError((onError) {
                 print(onError.toString());
@@ -175,7 +180,7 @@ class _HospitalListScreenState extends State<HospitalListScreen> {
     _currentPosition = await location.getLocation();
     _initialcameraposition = LatLng(_currentPosition.latitude, _currentPosition.longitude);
     location.onLocationChanged.listen((LocationData currentLocation) {
-      print("${currentLocation.longitude} : ${currentLocation.longitude}");
+      //print("${currentLocation.longitude} : ${currentLocation.longitude}");
       setState(() {
         _currentPosition = currentLocation;
         _initialcameraposition = LatLng(_currentPosition.latitude, _currentPosition.longitude);
